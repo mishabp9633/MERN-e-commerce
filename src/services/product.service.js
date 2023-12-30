@@ -62,7 +62,9 @@ export async function getAll(page, limit, query) {
        { 'category.categoryName': { $regex: query?.search ? query?.search : '', $options: 'i' } },
     ];
   }
-
+  if(query.subcategoryId){
+   queryData['subcategory.subcategoryId'] = query.subcategoryId
+ }
   const product = await productModel
     .find(queryData)
     .skip((toNumber(page) - 1) * toNumber(limit))
