@@ -18,13 +18,23 @@ const productSchema = new Schema(
       required: true,
       dafault: 0,
     },
-    categoryId: {
-      type: String,
-      ref: "Category",
+    category: {
+      categoryId: {
+        type: String,
+        ref: "Category",
+      },
+      categoryName: {
+        type: String,
+      },
     },
-    subcategoryId: {
-      type: String,
-      ref: "Subcategory",
+    subcategory: {
+      subcategoryId: {
+        type: String,
+        ref: "Subcategory",
+      },
+      subcategoryName: {
+        type: String,
+      },
     },
     productImages: [
       {
