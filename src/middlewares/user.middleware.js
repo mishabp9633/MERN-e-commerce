@@ -1,4 +1,4 @@
-import {isValidEmail} from "../utils/util.js";
+import {isValidEmail} from "../utils/email.regex.js";
 
 
 

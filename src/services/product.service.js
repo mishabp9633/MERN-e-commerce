@@ -2,6 +2,7 @@ import productModel from "../models/product.model.js"
 import {HttpException} from '../exceptions/exceptions.js';
 import { v4 as uuidv4 } from 'uuid';
 import lodash from 'lodash';
+import { findcategory } from "./subcategory.service.js";
 const { toNumber } = lodash
 
 
@@ -29,15 +30,17 @@ export async function saveProduct(productData, files){
     }else{
       productData.totalPrice = productData.price * productData.totalProductCount
     }
-    const product = await productModel.create({...productData, productImages})
+
+    const categoryId = await findcategory(productData.subcategoryId)
+    const product = await productModel.create({...productData, productImages, categoryId})
     return {product}
 }
 
 export async function ratingProduct(productId, productRating){
    const product = await productModel.findOne({_id: productId})
    if(!product) throw new HttpException(404, "product not found")
-   product.rating = productRating
-   await product.save()
+   product.rating = productRating.rating
+   await product.save({validateBeforeSave: false})
    return {product}
 }
 
@@ -56,7 +59,6 @@ export async function getAll(page,limit,query){
     .sort({createdAt:-1})
 
     const total = await productModel.find().countDocuments()
-    console.log(product)
     return{product,total}
  }
 

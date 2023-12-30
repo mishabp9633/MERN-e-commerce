@@ -18,8 +18,8 @@ const cpUpload = upload.fields([{ name: 'profile', maxCount: 1 }, { name: 'produ
 
 router.get(`${path}/all`,authorizeRoles([ROLES.USER]), getAllProduct)
 router.post(`${path}/create`, cpUpload, authorizeRoles([ROLES.USER]), productValidator, createProduct)
-router.post(`${path}/rating`, authorizeRoles([ROLES.USER]), productRating)
-router.get(`${path}/seller/all/:id`, getSingleProduct)
+router.post(`${path}/rating/:id`, authorizeRoles([ROLES.USER]), productRating)
+router.get(`${path}/single/:id`, getSingleProduct)
 
 export default router
 

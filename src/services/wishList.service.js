@@ -7,7 +7,7 @@ const { toNumber } = lodash
 export async function saveWhishList(userId, wishListData){
    const findWishList = await wishlistModel.findOne({productId: wishListData.productId})
    if(findWishList){
-      const findWishList = await wishlistModel.findByIdAndDelete(findWishList._id)
+      await wishlistModel.findByIdAndDelete(findWishList._id)
       return { message:"Product removed from your Wishlist" }
    }
     const wishList = await wishlistModel.create({...wishListData, userId})
@@ -17,7 +17,7 @@ export async function saveWhishList(userId, wishListData){
 export async function findAllUserWishList(userId){
 
     const wishList = await wishlistModel.find({userId})
-    .populate("product")
+    .populate("productId")
     .sort({createdAt:-1})
     return{wishList}
  }

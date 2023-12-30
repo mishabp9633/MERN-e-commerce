@@ -9,7 +9,7 @@ import { authorizeRoles } from "../middlewares/auth.middleware.js"
 import { ROLES } from "../constants/role.constants.js"
 
 const router = express.Router()
-const path = "/wishList"
+const path = "/wishlist"
 
 router.get(`${path}/all`,authorizeRoles([ROLES.USER]), getAllUserWishList)
 router.post(`${path}/new`, authorizeRoles([ROLES.USER]), createWhishList)

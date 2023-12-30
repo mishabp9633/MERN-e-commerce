@@ -22,3 +22,11 @@ export async function getAll(categoryId, page, limit){
 
     return{subcategory, total}
  }
+
+//....for finding category using subcategory id to the product service...//
+export async function findcategory(subcategoryId){
+   const subcategory = await subcategoryModel.findOne({_id: subcategoryId})
+   if(!subcategory) throw new HttpException(404, "subcategory not found")
+
+   return subcategory.categoryId
+}

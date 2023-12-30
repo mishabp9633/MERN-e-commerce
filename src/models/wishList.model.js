@@ -1,7 +1,7 @@
 import { model, Schema } from 'mongoose';
 
 const WishlistSchema = new Schema ({
-    product: {
+    productId: {
         type: String,
         ref: "Product"
     },
