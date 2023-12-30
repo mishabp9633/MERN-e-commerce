@@ -3,8 +3,6 @@ import express from "express";
 import {
   getAllSubcategory,
   saveSubcategory,
-  updateSubcategory,
-  deleteSubcategory,
 } from "../controllers/subcategory.controller.js"
 
 import { subcategoryValidator } from "../middlewares/subcategory.validator.js"

@@ -11,6 +11,7 @@ import authRouter from './routes/auth.route.js'
 import categoryRouter from './routes/category.route.js'
 import subcategoryRouter from './routes/subcategory.route.js'
 import productRouter from './routes/product.route.js'
+import wishListRouter from './routes/wishList.route.js'
 
 import {errorHandling} from './middlewares/error.middleware.js'
 
@@ -27,6 +28,7 @@ import {errorHandling} from './middlewares/error.middleware.js'
     categoryRouter,
     subcategoryRouter,
     productRouter,
+    wishListRouter,
     )
 
   app.use(errorHandling)

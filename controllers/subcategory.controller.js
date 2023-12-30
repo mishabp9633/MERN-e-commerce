@@ -1,4 +1,4 @@
-import {save,getAll, Delete, update} from '../services/subcategory.service.js'
+import {save,getAll} from '../services/subcategory.service.js'
 
 export async function saveSubcategory(req,res,next){
     try{
