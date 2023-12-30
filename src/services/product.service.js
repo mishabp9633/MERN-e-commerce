@@ -65,6 +65,9 @@ export async function getAll(page, limit, query) {
   if(query.subcategoryId){
    queryData['subcategory.subcategoryId'] = query.subcategoryId
  }
+  if(query.categoryId){
+   queryData['category.categoryId'] = query.categoryId
+ }
   const product = await productModel
     .find(queryData)
     .skip((toNumber(page) - 1) * toNumber(limit))
