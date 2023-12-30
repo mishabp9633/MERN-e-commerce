@@ -62,13 +62,22 @@ export async function getAll(page, limit, query) {
        { 'category.categoryName': { $regex: query?.search ? query?.search : '', $options: 'i' } },
     ];
   }
-  if (query.categoryId) queryData["category.categoryId"] = query.categoryId;
-  if (query.subcategoryId) queryData["subcategory.subcategoryId"] = query.subcategoryId;
-
-  console.log(queryData);
 
   const product = await productModel
     .find(queryData)
+    .skip((toNumber(page) - 1) * toNumber(limit))
+    .limit(toNumber(limit))
+    .sort({ createdAt: -1 });
+
+  const total = await productModel.find(queryData).countDocuments();
+  return { product, total };
+}
+
+export async function findAllProductBySubcategory(page, limit, subcategories) {
+   const queryData = {
+      'subcategory.subcategoryId': { $in: subcategories } // Using $in operator to match multiple subcategory IDs
+    };
+  const product = await productModel.find(queryData)
     .skip((toNumber(page) - 1) * toNumber(limit))
     .limit(toNumber(limit))
     .sort({ createdAt: -1 });

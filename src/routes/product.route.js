@@ -2,7 +2,8 @@ import {
      getAllProduct, 
      getSingleProduct,
      createProduct,
-     productRating
+     productRating,
+     getAllProductBySubcategory
     } from '../controllers/product.controller.js'
 
 import express from 'express'
@@ -17,6 +18,7 @@ const path = "/product"
 const cpUpload = upload.fields([{ name: 'profile', maxCount: 1 }, { name: 'product', maxCount: 4 }])
 
 router.get(`${path}/all`,authorizeRoles([ROLES.USER]), getAllProduct)
+router.get(`${path}/subcategory/all`,authorizeRoles([ROLES.USER]), getAllProductBySubcategory)
 router.post(`${path}/create`, cpUpload, authorizeRoles([ROLES.USER]), productValidator, createProduct)
 router.post(`${path}/rating/:id`, authorizeRoles([ROLES.USER]), productRating)
 router.get(`${path}/single/:id`, getSingleProduct)

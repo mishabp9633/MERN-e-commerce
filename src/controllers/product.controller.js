@@ -1,4 +1,5 @@
 import {
+  findAllProductBySubcategory,
   findSingleProduct,
   getAll,
   ratingProduct,
@@ -35,6 +36,19 @@ export async function getAllProduct(req, res, next) {
     const page = req.query.page;
     const limit = req.query.limit || "10";
     const result = await getAll(page, limit, query);
+
+    res.status(200).send(result);
+  } catch (err) {
+    next(err);
+  }
+}
+
+export async function getAllProductBySubcategory(req, res, next) {
+  try {
+    const subcategories = req.body.subcategory;
+    const page = req.query.page;
+    const limit = req.query.limit || "10";
+    const result = await findAllProductBySubcategory(page, limit, subcategories);
 
     res.status(200).send(result);
   } catch (err) {
