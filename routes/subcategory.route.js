@@ -15,11 +15,7 @@ const router = express.Router();
 const path = "/subcategory";
 
 // ..........admin............//
-router.post(`${path}/new`,subcategoryValidator,authorizeRoles([ROLES.ADMIN]),saveSubcategory);
-router.put(`${path}/update/:id`, authorizeRoles([ROLES.ADMIN]), updateSubcategory);
-router.delete(`${path}/delete/:id`, authorizeRoles([ROLES.ADMIN]), deleteSubcategory);
-
-//........admin and seller.........//
-router.get(`${path}/all`, authorizeRoles([ROLES.ADMIN,ROLES.SELLER]), getAllSubcategory);
+router.post(`${path}/new`,authorizeRoles([ROLES.USER]), subcategoryValidator, saveSubcategory);
+router.get(`${path}/all`, authorizeRoles([ROLES.USER]), getAllSubcategory);
 
 export default router;
