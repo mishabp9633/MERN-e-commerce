@@ -6,7 +6,7 @@ export function errorHandling(err,req,res,next){
         res
           .status(status)
           .json({
-            Error: `[${req.method}] ${req.path} >> StatusCode:: ${status}, Message:: ${message}`,
+            message: `${message}`,
           });
       } catch (error) {
         next(error);

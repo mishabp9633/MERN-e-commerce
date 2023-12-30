@@ -3,8 +3,6 @@ import userModel from "../models/user.model.js";
 
 export const authorizeRoles = (roles) =>
   async (req, res, next) => {
-    console.log('roles: ',roles)
-
     const token =
       (req.header("Authorization") &&
         req.header("Authorization").split("Bearer ")[1]) ||

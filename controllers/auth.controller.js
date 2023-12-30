@@ -1,30 +1,25 @@
-import { login } from "../services/auth.service.js";
+import { userLogin, userSignUp } from "../services/auth.service.js";
 
-//...........login...............// 
-export async function signIn(req, res, next) {
-  
-    const loginData = req.body
-  
-    try {
-      const response = await login(loginData)
-      res.status(200).send(response);
-      }
-    catch (err) {
-      console.log(err);
-      next(err);
-    } 
-} 
-
-export async function logoutUser(req, res, next) {
+//...........sign-up...............//
+export async function signUp(req, res, next) {
   try {
-      res.cookie('x-auth-token')
-      res.status(200).send({ message: 'Successfully logged out' });
-  
+    const userdata = req.body;
+
+    const result = await userSignUp(userdata);
+    res.send(result);
   } catch (err) {
-    console.log(err);
+      next(err);
+  }
+}
+
+//...........login...............//
+export async function login(req, res, next) {
+  const loginData = req.body;
+
+  try {
+    const response = await userLogin(loginData);
+    res.status(200).send(response);
+  } catch (err) {
     next(err);
   }
 }
-//...........login...............// 
-
-
