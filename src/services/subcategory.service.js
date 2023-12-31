@@ -1,4 +1,5 @@
 import subcategoryModel from '../models/subcategory.model.js'
+import { HttpException } from "../exceptions/exceptions.js";
 import lodash from 'lodash';
 import { findcategoryData } from './category.service.js';
 const { toNumber } = lodash
