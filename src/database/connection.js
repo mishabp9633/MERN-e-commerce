@@ -1,8 +1,7 @@
 import  mongoose  from 'mongoose';
 mongoose.set('strictQuery', false);
 
-const connection_string =
-  "mongodb://127.0.0.1:27017/MERN-e-commerce"
+const connection_string = process.env.MONGO_CONNECTION_STRING
 
   export async function initialize(){
     try{
